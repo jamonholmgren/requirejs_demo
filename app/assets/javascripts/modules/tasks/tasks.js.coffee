@@ -15,11 +15,45 @@ define [
     bindings:
       items: ->
         foreach: @tasks
+
       taskDescription: ->
-        text: @description,
+        text: @description
         attr: { for: "task-#{@id}" }
+        visible: !@isEditing()
+
+      editTaskDescription: ->
+        value: @description
+        visible: @isEditing()
+        valueUpdate: "afterkeypress"
+        event:
+          keypress: (data, event) ->
+            if event.which is 13
+              @save()
+              @stopEditing()
+              $("[data-class=addTask]").trigger "click"
+            true
+
+
+      processKeyUp: (event) ->
+        if event.keyCode == 13
+          @saveTask()
+
+      editTask: ->
+        click: @startEditing,
+        visible: !@isEditing()
+
+      saveTask: ->
+        click: ->
+          @save()
+          @stopEditing()
+        visible: @isEditing()
+
       addTask: ->
-        click: @addRandomTask
+        click: ->
+          task = @addTask(null)
+          task.startEditing()
+          $("[data-class=editTaskDescription]:visible").focus()
+
       taskCheckbox: ->
         click:    @toggleTaskCompleted,
         checked:  @complete(),
@@ -27,8 +61,8 @@ define [
     
     addTask: (description) ->
       task = new Task(null, description, false)
-      task.save()
       @tasks.push(task)
+      task
     
     addRandomTask: ->
       @addTask("Some task")

@@ -2,10 +2,16 @@ define ["jquery", "knockout"], ($, ko) ->
   class Task
     constructor: (id, description, complete) ->
       @id          = id
-      @description = description
+      @description = ko.observable(description)
       @complete    = ko.observable(complete)
-      
+      @isEditing   = ko.observable(false)
+
     # View state
+    startEditing: ->
+      @isEditing(true)
+
+    stopEditing: ->
+      @isEditing(false)
 
     # Data manipulation
     toggleTaskCompleted: ->
@@ -22,14 +28,17 @@ define ["jquery", "knockout"], ($, ko) ->
     # Persistence
     hash: ->
       hash  = task:
-                description:  @description,
-                complete:     @complete
-      hash.task.id = @id if @id
+                description:  @description(),
+                complete:     @complete()
+      hash.task.id = @id if @persisted()
       hash
+
+    persisted: ->
+      @id isnt null
 
     updateLocalAttributes: (data) ->
       @id           = data.id
-      @description  = data.description
+      @description(data.description)
       @complete(data.complete)
 
     create: ->
@@ -45,7 +54,7 @@ define ["jquery", "knockout"], ($, ko) ->
         # self.updateLocalAttributes(data)
 
     save: ->
-      if @id isnt null
+      if @persisted()
         @update()
       else
         @create()
