@@ -1,11 +1,9 @@
 require [
   "jquery", 
   "lodash",
-  "modules/test/test"
-  "knockout", 
-  "knockout-classBindingProvider"
-], ($, _, Test) ->
+  "modules/tasks/tasks"
+], ($, _, TaskViewModel) ->
 
   $ -> 
-    thing = new Test()
-    alert thing.method()
+    viewModel = new TaskViewModel()
+    viewModel.bootstrap()

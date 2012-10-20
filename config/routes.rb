@@ -1,5 +1,8 @@
 Taskmanager::Application.routes.draw do
   root to: "test#index"
+
+  resources :tasks
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
