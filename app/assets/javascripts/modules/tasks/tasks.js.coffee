@@ -14,18 +14,16 @@ define [
 
     bindings:
       items: ->
-        { foreach: @tasks }
+        foreach: @tasks
       taskDescription: ->
         text: @description,
-        attr: 
-          for: "task-#{@id}"
+        attr: { for: "task-#{@id}" }
       addTask: ->
-        { click: @addRandomTask }
-      taskCheckbox: (context, classes) ->
+        click: @addRandomTask
+      taskCheckbox: ->
         click:    @toggleTaskCompleted,
         checked:  @complete(),
-        attr:
-          id: "task-#{@id}"
+        attr: { id: "task-#{@id}" }
     
     addTask: (description) ->
       task = new Task(null, description, false)

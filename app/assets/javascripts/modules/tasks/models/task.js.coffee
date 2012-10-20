@@ -6,8 +6,6 @@ define ["jquery", "knockout"], ($, ko) ->
       @complete    = ko.observable(complete)
       
     # View state
-    isVisible: ->
-      !@complete()
 
     # Data manipulation
     toggleTaskCompleted: ->
