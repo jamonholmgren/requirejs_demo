@@ -17,7 +17,7 @@ class TasksController < ApplicationController
 
   def update
     @model.update_attributes(params[:task])
-    respond_with(@model)
+    render json: @model
   end
 
   def destroy
@@ -27,6 +27,6 @@ class TasksController < ApplicationController
 
   private
   def find_model
-    @model = Task.find(params[:id]) if params[:id]
+    @model = Task.find(params[:id]) if params[:id].present?
   end
 end

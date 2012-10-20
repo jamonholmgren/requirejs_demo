@@ -7,15 +7,33 @@ define [
   "knockout-classBindingProvider"
 ], ($, _, Task, view, ko, BindingProvider) ->
 
-  class TaskViewModel
-    constructor: ->
-      $.get "/tasks.json", (raw_tasks) ->
-        tasks = _.map raw_tasks, (task) -> new Task(task.id, task.description, task.completed)
-        @tasks = ko.observableArray(tasks)
+  class TasksViewModel
+    constructor: (raw_tasks) ->
+      tasks = _.map raw_tasks, (t) -> new Task(t.id, t.description, t.complete)
+      @tasks = ko.observableArray(tasks)
+
     bindings:
-      items: (context, classes) ->
+      items: ->
         { foreach: @tasks }
+      description: ->
+        { text: @description }
+      addTask: ->
+        { click: @addRandomTask }
+      taskCheckbox: (context, classes) ->
+        { 
+          click:    @toggleTaskCompleted,
+          checked:  @isComplete()
+        }
+    
+    addTask: (description) ->
+      task = new Task(null, description, false)
+      task.save()
+      @tasks.push(task)
+    
+    addRandomTask: ->
+      @addTask("Some task")
+    
     bootstrap: ->
       $("body").append(view)
       ko.bindingProvider.instance = new BindingProvider(@bindings)
-      ko.applyBindings()
+      ko.applyBindings(this)

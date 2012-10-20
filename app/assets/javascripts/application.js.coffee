@@ -2,8 +2,9 @@ require [
   "jquery", 
   "lodash",
   "modules/tasks/tasks"
-], ($, _, TaskViewModel) ->
+], ($, _, TasksViewModel) ->
 
   $ -> 
-    viewModel = new TaskViewModel()
-    viewModel.bootstrap()
+    $.get "/tasks.json", (tasks) ->
+      viewModel = new TasksViewModel(tasks)
+      viewModel.bootstrap()
