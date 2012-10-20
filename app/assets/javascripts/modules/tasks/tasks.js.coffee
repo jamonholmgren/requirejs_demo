@@ -18,7 +18,9 @@ define [
 
       taskDescription: ->
         text: @description
-        attr: { for: "task-#{@id}" }
+        attr: 
+          for: "task-#{@id}"
+          class: "complete" if @complete()
         visible: !@isEditing()
 
       editTaskDescription: ->
@@ -33,7 +35,6 @@ define [
               $("[data-class=addTask]").trigger "click"
             true
 
-
       processKeyUp: (event) ->
         if event.keyCode == 13
           @saveTask()
@@ -41,6 +42,13 @@ define [
       editTask: ->
         click: @startEditing,
         visible: !@isEditing()
+
+      cancelEditTask: (context, classes) ->
+        click: -> 
+          @stopEditing()
+          if !@persisted() or @description().length is 0
+            context.$root.removeTask(this)
+        visible: @isEditing()
 
       saveTask: ->
         click: ->
@@ -63,11 +71,16 @@ define [
       task = new Task(null, description, false)
       @tasks.push(task)
       task
+
+    removeTask: (task) ->
+      @tasks.remove(task)
     
     addRandomTask: ->
       @addTask("Some task")
     
-    bootstrap: ->
-      $("body").append(view)
+    bootstrap: (custom_selector) ->
+      selector = custom_selector || "body"
+
+      $(selector).append(view)
       ko.bindingProvider.instance = new BindingProvider(@bindings)
-      ko.applyBindings(this)
+      ko.applyBindings(this, document.getElementById("tasks"))

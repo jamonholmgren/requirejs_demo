@@ -44,14 +44,14 @@ define ["jquery", "knockout"], ($, ko) ->
     create: ->
       self = this
       $.post "/tasks.json", @hash(), (data) ->
-        # self.updateLocalAttributes(data)
+        self.updateLocalAttributes(data)
 
     update: ->
       self = this
       hash = @hash()
       hash._method = "PUT"
       $.post "/tasks/#{@id}.json", hash, (data) ->
-        # self.updateLocalAttributes(data)
+        self.updateLocalAttributes(data)
 
     save: ->
       if @persisted()
@@ -59,5 +59,11 @@ define ["jquery", "knockout"], ($, ko) ->
       else
         @create()
 
+    destroy: ->
+      if @persisted()
+        hash = @hash()
+        hash._method = "DELETE"
+        $.get "/tasks/#{@id}.json", hash
+      delete this
 
         
