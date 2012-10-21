@@ -11,7 +11,7 @@ This is a test project to learn how best to use client-side javascript in a Rail
 ## Rationale
 This is not about speed.  It is possible to get fast page loads using Rails Russian doll caching and various other techniques.
 
-What caching doesn't get you is an app-like feel.  You get an app that feels like a website, because the kind of rich interactions that make an app feel "native" are _javascript_.
+What caching doesn't get you is an app-like feel.  You get an app that feels like a website, because the kind of rich interactions that make an app feel "native" really _require javascript_.
 
 This demo app is about using javascript to create rich interfaces that are only possible in the client-side.
 
