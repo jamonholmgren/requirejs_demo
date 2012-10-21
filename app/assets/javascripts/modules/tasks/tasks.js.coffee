@@ -46,6 +46,9 @@ define [
               @save()
               @stopEditing()
             true
+          keyup: (data, event) ->
+            if event.keyCode == 27
+              $("[data-class=cancelEditTask]").trigger "click"
 
       removeTask: (context, classes) ->
         click: ->
