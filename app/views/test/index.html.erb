@@ -1,5 +1,14 @@
 <div class="content">
-  <h3>This is Content</h3>
-  <p>And some more</p>
+  <div class="row-fluid">
+    <div class="span8">      
+      <%= raw RDiscount.new(File.read(Rails.root + "README.md")).to_html %>
+    </div>
+    <div class="span4">
+      <h3>See This Example!</h3>
+      <div class="tasks-wrapper">
+        <!-- Filled by Javascript -->
+      </div>
+      <p><small>And that's about 120 lines of CoffeeScript.<small></p>
+    </div>
+  </div>
 </div>
-<div class="tasks-wrapper"></div>

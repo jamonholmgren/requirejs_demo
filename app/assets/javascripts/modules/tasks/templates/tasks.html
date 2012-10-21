@@ -1,24 +1,20 @@
-<section id="tasks">
+<section id="tasks" class="well">
   <header>
     <h1>Tasks</h1>
   </header>
   <section class="body">
-    <table data-class="items root">
-      <tr data-class="task">
-        <td>
+    <div data-class="items root">
+      <div data-class="task">
+        <label class="checkbox">
           <input type="checkbox" data-class="taskCheckbox">
-        </td>
-        <td>
-          <label data-class="taskDescription"></label>
           <input type="text" data-class="editTaskDescription" />
-        </td>
-        <td>
+          <span data-class="taskDescription"></span>
           <a href="#" data-class="editTask">Edit</a>
           <a href="#" data-class="saveTask">Save</a>
           <a href="#" data-class="cancelEditTask">Cancel</a>
-        </td>
-      </tr>
-    </table>
+        </label>
+      </div>
+    </div>
     <a href="" data-class="addTask">Add Task</a>
   </section>
 </section>
