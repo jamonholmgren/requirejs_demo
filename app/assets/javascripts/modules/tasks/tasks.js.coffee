@@ -1,8 +1,8 @@
 define [
   "jquery",
   "lodash",
-  "./models/task",
-  "text!./templates/tasks.html",
+  "./models/task_model",
+  "text!./templates/tasks_view.html",
   "knockout",
   "knockout-classBindingProvider"
 ], ($, _, Task, view, ko, BindingProvider) ->
@@ -12,7 +12,18 @@ define [
       tasks = _.map raw_tasks, (t) -> new Task(t.id, t.description, t.complete)
       @tasks = ko.observableArray(tasks)
 
-    bindings:
+    addTask: (description) ->
+      task = new Task(null, description, false)
+      @tasks.push(task)
+      task
+
+    removeTask: (task) ->
+      @tasks.remove(task)
+    
+    addRandomTask: ->
+      @addTask("Some task")
+
+    bindings: {
       items: ->
         foreach: @tasks
 
@@ -30,9 +41,10 @@ define [
         event:
           keypress: (data, event) ->
             if event.which is 13
+              unless @persisted()
+                $("[data-class=addTask]").trigger "click"
               @save()
               @stopEditing()
-              $("[data-class=addTask]").trigger "click"
             true
 
       removeTask: (context, classes) ->
@@ -68,21 +80,11 @@ define [
         click:    @toggleTaskCompleted,
         checked:  @complete(),
         attr: { id: "task-#{@id}" }
-    
-    addTask: (description) ->
-      task = new Task(null, description, false)
-      @tasks.push(task)
-      task
-
-    removeTask: (task) ->
-      @tasks.remove(task)
-    
-    addRandomTask: ->
-      @addTask("Some task")
+    }
     
     bootstrap: (custom_selector) ->
-      selector = custom_selector || "body"
+      @selector = custom_selector || "body"
 
-      $(selector).append(view)
+      $(@selector).append(view)
       ko.bindingProvider.instance = new BindingProvider(@bindings)
       ko.applyBindings(this, document.getElementById("tasks"))
