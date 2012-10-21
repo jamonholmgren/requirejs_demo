@@ -26,3 +26,12 @@ body {
 .complete {
   text-decoration: line-through;
 }
+
+a {
+  &.danger {
+    color: darken(red, 20%);
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}

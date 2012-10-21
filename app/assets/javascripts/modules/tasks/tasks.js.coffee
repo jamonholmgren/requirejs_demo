@@ -35,9 +35,11 @@ define [
               $("[data-class=addTask]").trigger "click"
             true
 
-      processKeyUp: (event) ->
-        if event.keyCode == 13
-          @saveTask()
+      removeTask: (context, classes) ->
+        click: ->
+          @destroy()
+          context.$root.removeTask(this)
+        visible: @persisted()
 
       editTask: ->
         click: @startEditing,

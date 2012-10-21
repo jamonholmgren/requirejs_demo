@@ -1,7 +1,7 @@
 define ["jquery", "knockout"], ($, ko) ->
   class Task
     constructor: (id, description, complete) ->
-      @id          = id
+      @id          = ko.observable(id)
       @description = ko.observable(description)
       @complete    = ko.observable(complete)
       @isEditing   = ko.observable(false)
@@ -30,14 +30,14 @@ define ["jquery", "knockout"], ($, ko) ->
       hash  = task:
                 description:  @description(),
                 complete:     @complete()
-      hash.task.id = @id if @persisted()
+      hash.task.id = @id() if @persisted()
       hash
 
     persisted: ->
-      @id isnt null
+      @id() isnt null
 
     updateLocalAttributes: (data) ->
-      @id           = data.id
+      @id(data.id)
       @description(data.description)
       @complete(data.complete)
 
@@ -50,7 +50,7 @@ define ["jquery", "knockout"], ($, ko) ->
       self = this
       hash = @hash()
       hash._method = "PUT"
-      $.post "/tasks/#{@id}.json", hash, (data) ->
+      $.post "/tasks/#{@id()}.json", hash, (data) ->
         self.updateLocalAttributes(data)
 
     save: ->
@@ -63,7 +63,7 @@ define ["jquery", "knockout"], ($, ko) ->
       if @persisted()
         hash = @hash()
         hash._method = "DELETE"
-        $.get "/tasks/#{@id}.json", hash
+        $.post "/tasks/#{@id()}.json", hash
       delete this
 
         

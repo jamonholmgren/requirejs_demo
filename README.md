@@ -26,7 +26,7 @@ This demo app is about using javascript to create rich interfaces that are only 
 * **Lodash**.  Javascript syntactic sugars.
 * **CoffeeScript**.  Because I'm a javascript noob.  Forgive me.
 
-### Positives so Far
+### Positives So Far
 
 * **Choose where you want client-side behavior.**  This structure doesn't require you to rewrite your whole app in javascript.
 * **Keep your templating language.** You can use HAML/SLIM if that's your thing.
