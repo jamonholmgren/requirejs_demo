@@ -56,4 +56,11 @@ Each module is designed to be self-contained, with everything it needs to functi
 |       |-- any HTML you need for the module
 </pre>
 
+### Inspired by Gems
+You should be able to require any module by simply requiring the `module_name.js` file.  It contains the main ViewModel (Read more in Knockout's documentation for ViewModels) and requires all the other files it needs.
+
+Every UI-related module has a `setup()` method which takes a jQuery selector. (i.e. `viewModel.setup(".some-wrapper-div")`) The module then inserts its UI into that selected div.
+
+**Models** are also _technically_ view models, in that they have observable properties (Again see Knockout docs).  However, they often map more directly to some server-side model in Rails, and may contain logic to save themselves to Rails via an API.
+
 To be continued...

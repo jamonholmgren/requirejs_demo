@@ -82,7 +82,7 @@ define [
         attr: { id: "task-#{@id}" }
     }
     
-    bootstrap: (custom_selector) ->
+    setup: (custom_selector) ->
       @selector = custom_selector || "body"
 
       $(@selector).append(view)

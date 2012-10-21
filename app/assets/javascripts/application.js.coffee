@@ -7,4 +7,4 @@ require [
   $ -> 
     $.get "/tasks.json", (tasks) ->
       viewModel = new TasksViewModel(tasks)
-      viewModel.bootstrap(".tasks-wrapper")
+      viewModel.setup(".tasks-wrapper")

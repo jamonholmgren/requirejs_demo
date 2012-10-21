@@ -13,7 +13,7 @@
 $ -> 
   $.get "/tasks.json", (tasks) ->
     viewModel = new TasksViewModel(tasks)
-    viewModel.bootstrap(".tasks-wrapper")
+    viewModel.setup(".tasks-wrapper")
       </pre>
 
       <p><small>And in Javascript:</small></p>
@@ -22,7 +22,7 @@ $(function() {
   return $.get("/tasks.json", function(tasks) {
     var viewModel;
     viewModel = new TasksViewModel(tasks);
-    return viewModel.bootstrap(".tasks-wrapper");
+    return viewModel.setup(".tasks-wrapper");
   });
 });      
       </pre>
