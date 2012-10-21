@@ -31,6 +31,12 @@ This demo app is about using javascript to create rich interfaces that are only 
 * **Choose where you want client-side behavior.**  This structure doesn't require you to rewrite your whole app in javascript.
 * **Keep your templating language.** You can use HAML/SLIM if that's your thing.
 * **Modular design lets you drop interfaces into your view throughout your app.**
+* **No more glue code.** You know what I'm talking about.  Changing values, ajaxing to the server, then updating the interface, hiding and showing links in different states.
+
+### Needs Work
+
+* **Test Framework.** I'm taking a look at Mocha.
+* **More Abstraction/Inheritance.** I think I could extract the setup method into a base view model and extract the persistence part of the Task model into a base object.
 
 ## Structure
 The javascript for the app is included in the asset pipeline, under `app/assets/javascripts`.

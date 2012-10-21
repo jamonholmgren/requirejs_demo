@@ -30,7 +30,7 @@ define [
       taskDescription: ->
         text: @description
         attr: 
-          for: "task-#{@id}"
+          for: "task-#{@id()}"
           class: "complete" if @complete()
         visible: !@isEditing()
 
@@ -82,7 +82,7 @@ define [
       taskCheckbox: ->
         click:    @toggleTaskCompleted,
         checked:  @complete(),
-        attr: { id: "task-#{@id}" }
+        attr: { id: "task-#{@id()}" }
     }
     
     setup: (custom_selector) ->
