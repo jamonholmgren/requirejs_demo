@@ -38,7 +38,7 @@ This demo app is about using javascript to create rich interfaces that are only 
 ### Needs Work
 
 * **Test Framework.** I'm taking a look at Mocha.
-* **More Abstraction/Inheritance.** I think I could extract the setup method into a base view model and extract the persistence part of the Task model into a base object.
+* **More Abstraction/Inheritance.** I think I could extract the setup method into a base view model <s>and extract the persistence part of the Task model into a base object.</s>
 
 ## Structure
 The javascript for the app is included in the asset pipeline, under `app/assets/javascripts`.
