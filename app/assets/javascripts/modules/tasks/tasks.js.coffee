@@ -9,7 +9,7 @@ define [
 
   class TasksViewModel
     constructor: (raw_tasks) ->
-      tasks = _.map raw_tasks, (t) -> new Task(t.id, t.description, t.complete)
+      tasks  = _.map raw_tasks, (t) -> new Task(t.id, t.description, t.complete)
       @tasks = ko.observableArray(tasks)
 
     addTask: (description) ->

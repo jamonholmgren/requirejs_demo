@@ -20,7 +20,7 @@ This demo app is about using javascript to create rich interfaces that are only 
 
 ### Libraries
 * **No Ember, No Backbone.** From my research, both of these can be overkill, particularly when you aren't trying to write an app entirely in the client side.
-* **RequireJS**. (Using the [requirejs-rails]() gem) Eliminates dependency problems, and structures the code in AMD modules.  
+* **RequireJS**. (Using the [requirejs-rails](https://github.com/jwhitley/requirejs-rails) gem) Eliminates dependency problems, and structures the code in AMD modules.  
 	* This gives the app structure without using a more "sophisticated" framework.
 	* From my unscientific research, it seems that AMD modules will be the preferred way of distributing javascript, thanks to node.
 * **KnockoutJS**.  Eliminates a lot of glue code and lets you write dynamic interfaces without worrying about updating your HTML.
@@ -31,7 +31,7 @@ This demo app is about using javascript to create rich interfaces that are only 
 
 * **Choose where you want client-side behavior.**  This structure doesn't require you to rewrite your whole app in javascript.
 * **Keep your templating language.** You can use HAML/SLIM if that's your thing.
-* **Modular design lets you drop interfaces into your view throughout your app.**
+* **Modular design lets you drop interfaces into your view throughout your app.**  You basically can make javascript-powered interfaces as "widgets" throughout your app.
 * **No more glue code.** You know what I'm talking about.  Changing values, ajaxing to the server, then updating the interface, hiding and showing links in different states.
 
 ### Needs Work

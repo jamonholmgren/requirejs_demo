@@ -1,2 +1,2 @@
 paths:
-  mymodule: "/modules/mymodule"
+  base_persistence: "modules/base_persistence/base_persistence"

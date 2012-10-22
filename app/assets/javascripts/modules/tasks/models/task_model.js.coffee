@@ -1,10 +1,12 @@
-define ["jquery", "knockout"], ($, ko) ->
-  class Task
+define ["jquery", "knockout", "base_persistence"], ($, ko, BasePersistence) ->
+
+  class Task extends BasePersistence
     constructor: (id, description, complete) ->
       @id          = ko.observable(id)
       @description = ko.observable(description)
       @complete    = ko.observable(complete)
       @isEditing   = ko.observable(false)
+      @baseUrl     = "/tasks"
 
     # View state
     startEditing: ->
@@ -33,37 +35,9 @@ define ["jquery", "knockout"], ($, ko) ->
       hash.task.id = @id() if @persisted()
       hash
 
-    persisted: ->
-      @id() isnt null
-
     updateLocalAttributes: (data) ->
       @id(data.id)
       @description(data.description)
       @complete(data.complete)
-
-    create: ->
-      self = this
-      $.post "/tasks.json", @hash(), (data) ->
-        self.updateLocalAttributes(data)
-
-    update: ->
-      self = this
-      hash = @hash()
-      hash._method = "PUT"
-      $.post "/tasks/#{@id()}.json", hash, (data) ->
-        self.updateLocalAttributes(data)
-
-    save: ->
-      if @persisted()
-        @update()
-      else
-        @create()
-
-    destroy: ->
-      if @persisted()
-        hash = @hash()
-        hash._method = "DELETE"
-        $.post "/tasks/#{@id()}.json", hash
-      delete this
 
         
