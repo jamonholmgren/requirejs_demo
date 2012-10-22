@@ -60,7 +60,7 @@ Each module is designed to be self-contained, with everything it needs to functi
 |   |-- module_name.js.coffee
 |   |-- models/
 |       |-- any client-side models this module needs
-|   |-- templates/
+|   |-- views/
 |       |-- any HTML you need for the module
 </pre>
 

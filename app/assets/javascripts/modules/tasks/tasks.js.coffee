@@ -2,7 +2,7 @@ define [
   "jquery",
   "lodash",
   "./models/task_model",
-  "text!./templates/tasks_view.html",
+  "text!./views/tasks_view.html",
   "knockout",
   "knockout-classBindingProvider"
 ], ($, _, Task, view, ko, BindingProvider) ->
