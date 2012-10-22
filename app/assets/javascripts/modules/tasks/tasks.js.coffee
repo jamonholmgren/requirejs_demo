@@ -57,7 +57,10 @@ define [
         visible: @persisted()
 
       editTask: ->
-        click: @startEditing,
+        click: ->
+          @startEditing()
+          $("input[data-class=editTaskDescription]").focus()
+
         visible: !@isEditing()
 
       cancelEditTask: (context, classes) ->

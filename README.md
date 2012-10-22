@@ -4,9 +4,10 @@ This is a test project to learn how best to use client-side javascript in a Rail
 ## Setup
 1. Clone the repository.  `git clone git@github.com:danielberkompas/requirejs_demo.git`
 2. Create an RVM gemset and .rvmrc file if you're using RVM.
-3. `rake db:migrate`
-4. `rails s`
-5. Visit the app at `localhost:3000`.
+3. `bundle install`
+4. `rake db:migrate`
+5. `rails s`
+6. Visit the app at `localhost:3000`.
 
 ## Rationale
 This is not about speed.  It is possible to get fast page loads using Rails Russian doll caching and various other techniques.
